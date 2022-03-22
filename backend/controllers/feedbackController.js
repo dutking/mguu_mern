@@ -1,10 +1,13 @@
 const asyncHandler = require('express-async-handler')
 
+const Feedback = require('../models/feedbackModel')
+
 // @desc Get feedbacks
 // @route GET /api/feedbacks
 // @access Private
 const getFeedbacks = asyncHandler(async (req, res) => {
-    res.status(200).json({message: 'Get feedbacks'})
+    const feedbacks = await Feedback.find()
+    res.status(200).json(feedbacks)
 })
 
 // @desc Set feedback
@@ -15,21 +18,46 @@ const setFeedback = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error('Введите Ваш отзыв.')
     }
-    res.status(200).json({message: 'Set feedback'})
+
+    const feedback = await Feedback.create({
+        text: req.body.text,
+        user: req.body.user
+    })
+
+    res.status(200).json(feedback)
 })
 
 // @desc Update feedback
 // @route PUT /api/feedbacks/:id
 // @access Private
 const updateFeedback = asyncHandler(async (req, res) => {
-    res.status(200).json({message: `Update feedback ${req.params.id}`})
+
+    const feedback = await Feedback.findById(req.params.id)
+
+    if (!feedback){
+        res.status(400)
+        throw new Error("Запись не найдена.")
+    }
+
+    const updatedFeedback = await Feedback.findByIdAndUpdate(req.params.id, req.body, {new: true})
+
+    res.status(200).json(updatedFeedback)
 })
 
 // @desc Delete feedback
 // @route DELETE /api/feedbacks/:id
 // @access Private
 const deleteFeedback = asyncHandler(async (req, res) => {
-    res.status(200).json({message: `Delete feedback ${req.params.id}`})
+    const feedback = await Feedback.findById(req.params.id)
+
+    if (!feedback){
+        res.status(400)
+        throw new Error("Запись не найдена.")
+    }
+
+    const deletedFeedback = await Feedback.findByIdAndDelete(req.params.id)
+
+    res.status(200).json(deletedFeedback)
 })
 
 module.exports = {
