@@ -6,8 +6,13 @@ const Feedback = require('../models/feedbackModel')
 // @route GET /api/feedbacks
 // @access Private
 const getFeedbacks = asyncHandler(async (req, res) => {
-    const feedbacks = await Feedback.find()
+    let tracks = req.user.tracks
+
+    //let feedbacks = await Promise.allSettled(tracks.map((t) => Feedback.find({track: t})))
+    const feedbacks = await Feedback.find({trackId: {$in: tracks}})
+    //const feedbacks = await Feedback.find()
     res.status(200).json(feedbacks)
+    //res.status(200).json(feedbacks.map(f => f.value))
 })
 
 // @desc Set feedback
@@ -21,7 +26,9 @@ const setFeedback = asyncHandler(async (req, res) => {
 
     const feedback = await Feedback.create({
         text: req.body.text,
-        user: req.body.user
+        user: req.body.user,
+        trackId: req.body.trackId,
+        courseID: req.body.courseID
     })
 
     res.status(200).json(feedback)
