@@ -41,8 +41,7 @@ function Dashboard() {
   return (
     <>
       <section className="heading">
-        <h1>Добро пожаловать, {user && user.name}</h1>
-        <p>Обратная связь от пользователей:</p>
+        <h1>Заявки пользователей:</h1>
       </section>
       <ApplicationsRequestForm />
       <section className="content">
