@@ -15,7 +15,7 @@ function Dashboard() {
 
   const { user } = useSelector((state) => state.auth);
   const { applications, isLoading, isError, message } = useSelector(
-    (state) => state.feedbacks
+    (state) => state.applications
   );
 
   useEffect(() => {
@@ -47,7 +47,7 @@ function Dashboard() {
       <ApplicationsRequestForm />
       <section className="content">
         {applications.length > 0 ? (
-          <div className="feedbacks">
+          <div className="applications">
             {applications.map((application) => (
               <ApplicationItem
                 key={application._id}

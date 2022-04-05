@@ -9,9 +9,9 @@ const initialState = {
   message: "",
 };
 
-// Get feedbacks
+// Get applications
 export const getAllApplications = createAsyncThunk(
-  "feedbacks/getAll",
+  "applications/getAll",
   async (_, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
