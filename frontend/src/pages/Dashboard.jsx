@@ -6,7 +6,7 @@ import Spinner from "../components/Spinner";
 import {
   getAllApplications,
   reset,
-} from "../features/applications/applicationSlice";
+} from "../features/application/applicationSlice";
 import ApplicationItem from "../components/ApplicationItem";
 
 function Dashboard() {
