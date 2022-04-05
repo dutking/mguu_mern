@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "../features/auth/authSlice";
-import feedbackReducer from "../features/feedbacks/feedbackSlice";
+import applicationReducer from "../features/applications/applicationSlice";
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    feedbacks: feedbackReducer,
+    applications: applicationReducer,
   },
 });

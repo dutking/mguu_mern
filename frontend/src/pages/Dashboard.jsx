@@ -1,17 +1,20 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import FeedbacksRequestForm from "../components/FeedbacksRequestForm";
+import ApplicationsRequestForm from "../components/ApplicationsRequestForm";
 import Spinner from "../components/Spinner";
-import { getAllFeedbacks, reset } from "../features/feedbacks/feedbackSlice";
-import FeedbackItem from "../components/FeedbackItem";
+import {
+  getAllApplications,
+  reset,
+} from "../features/applications/applicationSlice";
+import ApplicationItem from "../components/ApplicationItem";
 
 function Dashboard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.auth);
-  const { feedbacks, isLoading, isError, message } = useSelector(
+  const { applications, isLoading, isError, message } = useSelector(
     (state) => state.feedbacks
   );
 
@@ -24,7 +27,7 @@ function Dashboard() {
       navigate("/login");
     }
 
-    dispatch(getAllFeedbacks());
+    dispatch(getAllApplications());
 
     return () => {
       dispatch(reset());
@@ -41,12 +44,15 @@ function Dashboard() {
         <h1>Добро пожаловать, {user && user.name}</h1>
         <p>Обратная связь от пользователей:</p>
       </section>
-      <FeedbacksRequestForm />
+      <ApplicationsRequestForm />
       <section className="content">
-        {feedbacks.length > 0 ? (
+        {applications.length > 0 ? (
           <div className="feedbacks">
-            {feedbacks.map((feedback) => (
-              <FeedbackItem key={feedback._id} feedback={feedback} />
+            {applications.map((application) => (
+              <ApplicationItem
+                key={application._id}
+                application={application}
+              />
             ))}
           </div>
         ) : (

@@ -17,27 +17,27 @@ function Header() {
   return (
     <header className="header">
       <div className="logo">
-        <Link to="/">FeedbackChecker</Link>
+        <Link to="/">МГУУ tools</Link>
       </div>
       <ul>
         {user ? (
           <li>
             <button className="btn" onClick={onLogout}>
-              <FaSignOutAlt /> Logout
+              <FaSignOutAlt /> Выйти
             </button>
           </li>
         ) : (
           <>
             <li>
               <Link to="/login">
-                <FaSignInAlt /> Login
+                <FaSignInAlt /> Войти
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/register">
                 <FaUser /> Register
               </Link>
-            </li>
+            </li> */}
           </>
         )}
       </ul>

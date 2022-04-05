@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getAllFeedbacks } from "../features/feedbacks/feedbackSlice";
+import { getAllApplications } from "../features/application/applicationSlice";
 
-function FeedbacksRequestForm() {
+function ApplicationsRequestForm() {
   const [text, setText] = useState("");
 
   const dispatch = useDispatch();
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(getAllFeedbacks({ text }));
+    dispatch(getAllApplications({ text }));
   };
 
   return (
@@ -35,4 +35,4 @@ function FeedbacksRequestForm() {
   );
 }
 
-export default FeedbacksRequestForm;
+export default ApplicationsRequestForm;

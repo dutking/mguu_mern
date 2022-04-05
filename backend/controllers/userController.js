@@ -8,7 +8,7 @@ const User = require("../models/userModel");
 // @access Public
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password, tracks } = req.body;
+  const { name, email, password } = req.body;
 
   if (!name || !email || !password) {
     res.status(400);
@@ -34,7 +34,6 @@ const registerUser = asyncHandler(async (req, res) => {
     name,
     email,
     password: hashedPassword,
-    tracks,
   });
 
   if (user) {
@@ -42,7 +41,6 @@ const registerUser = asyncHandler(async (req, res) => {
       _id: user.id,
       name: user.name,
       email: user.email,
-      tracks: user.tracks,
       token: generateToken(user._id),
     });
   } else {
@@ -56,7 +54,7 @@ const registerUser = asyncHandler(async (req, res) => {
 // @access Public
 
 const loginUser = asyncHandler(async (req, res) => {
-  const { email, password, tracks } = req.body;
+  const { email, password } = req.body;
 
   // Check for user email
   const user = await User.findOne({ email });
@@ -66,7 +64,6 @@ const loginUser = asyncHandler(async (req, res) => {
       _id: user.id,
       name: user.name,
       email: user.email,
-      tracks: user.tracks,
       token: generateToken(user._id),
     });
   } else {

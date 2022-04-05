@@ -57,7 +57,7 @@ function Login() {
     <>
       <section className="heading">
         <h1>
-          <FaSignInAlt /> Login
+          <FaSignInAlt /> Вход
         </h1>
         <p>Пожалуйста, войдите в свою учетную запись.</p>
       </section>
@@ -88,7 +88,7 @@ function Login() {
 
           <div className="form-group">
             <button type="submit" className="btn btn-block">
-              Submit
+              Подтвердить
             </button>
           </div>
         </form>

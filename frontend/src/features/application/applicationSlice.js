@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import feedbackService from "./feedbackService";
+import applicationService from "./applicationService";
 
 const initialState = {
-  feedbacks: [],
+  applications: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -10,13 +10,13 @@ const initialState = {
 };
 
 // Get feedbacks
-export const getAllFeedbacks = createAsyncThunk(
+export const getAllApplications = createAsyncThunk(
   "feedbacks/getAll",
   async (_, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
 
-      return await feedbackService.getAllFeedbacks(token);
+      return await applicationService.getAllApplications(token);
     } catch (error) {
       const message =
         (error.response &&
@@ -30,23 +30,23 @@ export const getAllFeedbacks = createAsyncThunk(
   }
 );
 
-export const feedbackSlice = createSlice({
-  name: "feedback",
+export const applicationSlice = createSlice({
+  name: "application",
   initialState,
   reducers: {
     reset: (state) => initialState,
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getAllFeedbacks.pending, (state) => {
+      .addCase(getAllApplications.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getAllFeedbacks.fulfilled, (state, action) => {
+      .addCase(getAllApplications.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.feedbacks = action.payload;
+        state.applications = action.payload;
       })
-      .addCase(getAllFeedbacks.rejected, (state, action) => {
+      .addCase(getAllApplications.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
@@ -54,5 +54,5 @@ export const feedbackSlice = createSlice({
   },
 });
 
-export const { reset } = feedbackSlice.actions;
-export default feedbackSlice.reducer;
+export const { reset } = applicationSlice.actions;
+export default applicationSlice.reducer;

@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const API_URL = "/api/feedbacks/";
+const API_URL = "/api/applications/";
 
 // Get feedbacks
-const getAllFeedbacks = async (token) => {
+const getAllApplications = async (token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -15,8 +15,8 @@ const getAllFeedbacks = async (token) => {
   return response.data;
 };
 
-const feedbackService = {
-  getAllFeedbacks,
+const applicationService = {
+  getAllApplications,
 };
 
-export default feedbackService;
+export default applicationService;
