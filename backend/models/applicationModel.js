@@ -30,15 +30,17 @@ const applicationSchema = new mongoose.Schema(
     subordinates: {
       direct: {
         type: String,
+        default: "-1",
         required: [
-          true,
+          false,
           "Пожалуйста, укажите количество сотрудников в прямом подчинении.",
         ],
       },
       functional: {
         type: String,
+        default: "-1",
         required: [
-          true,
+          false,
           "Пожалуйста, укажите количество сотрудников в функциональном подчинении.",
         ],
       },

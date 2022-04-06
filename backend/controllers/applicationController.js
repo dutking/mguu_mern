@@ -17,24 +17,25 @@ const getApplications = asyncHandler(async (req, res) => {
 // @route POST /api/applications
 // @access Private
 const setApplication = asyncHandler(async (req, res) => {
-  if (!req.body.text) {
+  if (!req.body.appliedFor) {
     res.status(400);
     throw new Error("Заполните все поля.");
   }
 
   const application = await Application.create({
+    appliedFor: req.body.appliedFor,
     name: req.body.name,
     occupation: req.body.occupation,
     organization: req.body.organization,
     email: req.body.email,
     phone: req.body.phone,
     subordinates: {
-      direct: req.body.subordinates.direct,
-      functional: req.body.subordinates.functional,
+      direct: req.body?.subordinates?.direct || "-1",
+      functional: req.body?.subordinates?.functional || "-1",
     },
     experience: req.body.experience,
     timeAvailable: req.body.timeAvailable,
-    strengths: req.body.strength,
+    strengths: req.body.strengths,
     devZones: req.body.devZones,
     complications: req.body.complications,
     task: req.body.task,
