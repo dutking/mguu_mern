@@ -89,23 +89,29 @@ h3 {
 .applications {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 10px;
+  gap: 2rem;
 }
 
-.application {
+.application div {
   background-color: #f4f4f4;
-  margin: 10px 0;
-  padding: 20px 0 10px;
-  position: relative;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 200px auto;
+  row-gap: 0.5rem;
 }
 
-.application .close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  cursor: pointer;
-  border: none;
-  background: none;
+.application div .fieldName {
+  text-align: right;
+  margin-right: 1rem;
+  font-size: 14px;
+  color: gray;
+}
+
+.application div .data {
+  font-size: 16px;
+  color: black;
+  text-align: left;
+  margin-left: 1rem;
 }
 
 .form,
