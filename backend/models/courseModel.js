@@ -1,6 +1,97 @@
 const mongoose = require("mongoose");
 
-const questionSchema = new mongoose.Schema({});
+const answerSchema = new mongoose.Schema({
+  iri: {
+    type: String,
+    required: true,
+  },
+  correct: {
+    type: Boolean,
+    required: true,
+  },
+  text: {
+    type: String,
+    required: true,
+  },
+  feedback: {
+    type: String,
+    required: true,
+  },
+  weight: {
+    type: Number,
+    default: 1,
+  },
+  pools: [],
+  next: {
+    type: String,
+    required: false,
+  },
+});
+
+const questionSchema = new mongoose.Schema({
+  iri: {
+    type: String,
+    required: true,
+  },
+  type: {
+    type: String,
+    required: true,
+  },
+  subtype: {
+    type: String,
+    required: false,
+  },
+  group: {
+    type: String,
+    required: false,
+  },
+  instruction: {
+    type: String,
+    default: "",
+  },
+  validation: {
+    type: String,
+    required: false,
+  },
+  shuffle: {
+    type: Boolean,
+    default: true,
+  },
+  weight: {
+    type: Number,
+    default: 1,
+  },
+  story: {
+    type: String,
+    default: "",
+  },
+  question: {
+    type: String,
+    required: true,
+  },
+  feedback: {
+    correct: {
+      type: String,
+      default: "",
+    },
+    incorrect: {
+      type: String,
+      default: "",
+    },
+  },
+  help: [
+    {
+      type: String,
+      required: false,
+    },
+  ],
+  answers: [
+    {
+      type: answerSchema,
+      required: true,
+    },
+  ],
+});
 
 const testSchema = new mongoose.Schema({
   iri: {
