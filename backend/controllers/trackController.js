@@ -17,9 +17,9 @@ const getTracks = asyncHandler(async (req, res) => {
 // @route POST /api/tracks
 // @access Private
 const setTrack = asyncHandler(async (req, res) => {
-  if (!req.body.iri) {
+  if (!req.body.type === "track") {
     res.status(400);
-    throw new Error("Заполните все поля.");
+    throw new Error("Это не трек. Укажите type: 'track'");
   }
 
   const track = await Track.create({

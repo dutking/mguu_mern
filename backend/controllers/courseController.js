@@ -17,9 +17,9 @@ const getCourses = asyncHandler(async (req, res) => {
 // @route POST /api/courses
 // @access Private
 const setCourse = asyncHandler(async (req, res) => {
-  if (!req.body.appliedFor) {
+  if (!req.body.type === "course") {
     res.status(400);
-    throw new Error("Заполните все поля.");
+    throw new Error("Это не курс. Укажите type: 'course'");
   }
 
   const course = await Course.create({
