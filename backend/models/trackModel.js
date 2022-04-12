@@ -3,28 +3,27 @@ const mongoose = require("mongoose");
 const globalMetricSchema = new mongoose.Schema({
   iri: {
     type: String,
-    required: true,
+    required: [true, "Укажите идентификатор метрики."],
   },
   nameRus: {
     type: String,
-    required: true,
+    required: [true, "Укажите название метрики."],
   },
   description: {
     type: String,
-    required: false,
     default: "",
   },
   metricType: {
     type: String,
-    required: true,
+    required: [true, "Укажите metricType."],
   },
   metricProfile: {
     type: String,
-    required: true,
+    required: [true, "Укажите metricProfile."],
   },
   metricExtension: {
     type: String,
-    required: true,
+    required: [true, "Укажите metricExtension."],
   },
   statementFunction: {
     type: String,
@@ -32,14 +31,14 @@ const globalMetricSchema = new mongoose.Schema({
   },
   requiredState: {
     type: String,
-    required: true,
+    required: [true, "Укажите условие отправки метрики."],
   },
 });
 
 const globalPoolSchema = new mongoose.Schema({
-  id: {
+  poolId: {
     type: String,
-    required: true,
+    required: [true, "Укажите идентификатор пула."],
   },
   value: {
     initial: {
@@ -57,7 +56,7 @@ const globalPoolSchema = new mongoose.Schema({
   },
   name: {
     type: String,
-    required: true,
+    required: [true, "Укажите название пула."],
   },
   scoringFunction: {
     type: String,
@@ -73,7 +72,7 @@ const trackSchema = new mongoose.Schema(
   {
     iri: {
       type: String,
-      required: [true, "Пожалуйста, укажите IRI трека."],
+      required: [true, "Пожалуйста, укажите идентификатор трека в виде IRI."],
     },
     type: {
       type: String,
@@ -86,27 +85,22 @@ const trackSchema = new mongoose.Schema(
     instruction: {
       mc: {
         type: String,
-        required: true,
         default: "Выберите верный ответ.",
       },
       mr: {
         type: String,
-        required: true,
         default: "Выберите от <minReponses> до <maxResponses> ответов.",
       },
       fillin: {
         type: String,
-        required: true,
         default: "Введите ваш ответ.",
       },
       longfillin: {
         type: String,
-        required: true,
         default: "Введите ваш ответ.",
       },
       range: {
         type: String,
-        required: true,
         default: "Выставите требуемое значение.",
       },
     },
@@ -114,53 +108,44 @@ const trackSchema = new mongoose.Schema(
       submit: {
         initial: {
           type: String,
-          required: false,
           default: "Ответить",
         },
         completed: {
           type: String,
-          required: false,
           default: "Ответ принят",
         },
         icon: {
           type: Boolean,
-          required: false,
           default: false,
         },
       },
       tryAgain: {
         initial: {
           type: String,
-          required: false,
           default: "Попробовать еще раз",
         },
         icon: {
           type: Boolean,
-          required: false,
           default: false,
         },
       },
       continue: {
         initial: {
           type: String,
-          required: false,
           default: "Следующий вопрос",
         },
         last: {
           type: String,
-          required: false,
           default: "Завершить попытку",
         },
         icon: {
           type: Boolean,
-          required: false,
           default: false,
         },
       },
       next: {
         initial: {
           type: String,
-          required: false,
           default: "Далее",
         },
       },

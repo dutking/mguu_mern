@@ -1,27 +1,43 @@
 const mongoose = require("mongoose");
 
+const poolSchema = new mongoose.Schema({
+  poolId: {
+    type: String,
+    required: true,
+  },
+  value: {
+    type: Number,
+    required: true,
+  },
+});
+
 const answerSchema = new mongoose.Schema({
   iri: {
     type: String,
-    required: true,
+    required: [true, "Укажите идентификатор варианта ответа."],
   },
   correct: {
     type: Boolean,
-    required: true,
+    required: [true, "Укажите правильность ответа."],
   },
   text: {
     type: String,
-    required: true,
+    required: [true, "Укажите текст варианта ответа."],
   },
   feedback: {
     type: String,
-    required: true,
+    default: "",
   },
   weight: {
     type: Number,
     default: 1,
   },
-  pools: [],
+  pools: [
+    {
+      type: poolSchema,
+      required: false,
+    },
+  ],
   next: {
     type: String,
     required: false,
@@ -31,11 +47,11 @@ const answerSchema = new mongoose.Schema({
 const questionSchema = new mongoose.Schema({
   iri: {
     type: String,
-    required: true,
+    required: [true, "Укажите идентификатор вопроса."],
   },
   type: {
     type: String,
-    required: true,
+    required: [true, "Укажите тип вопроса."],
   },
   subtype: {
     type: String,
@@ -67,7 +83,7 @@ const questionSchema = new mongoose.Schema({
   },
   question: {
     type: String,
-    required: true,
+    required: [true, "Укажите текст вопроса."],
   },
   feedback: {
     correct: {
@@ -96,7 +112,7 @@ const questionSchema = new mongoose.Schema({
 const testSchema = new mongoose.Schema({
   iri: {
     type: String,
-    required: true,
+    required: [true, "Укажите идентификатор теста."],
   },
   type: {
     type: String,
@@ -104,7 +120,7 @@ const testSchema = new mongoose.Schema({
   },
   nameRus: {
     type: String,
-    required: true,
+    required: [true, "Укажите название теста."],
   },
   description: {
     type: String,
@@ -299,27 +315,27 @@ const testSchema = new mongoose.Schema({
     continue: {
       initial: {
         type: String,
-        required: false,
         default: "Следующий вопрос",
       },
       last: {
         type: String,
-        required: false,
         default: "Завершить попытку",
       },
       icon: {
         type: Boolean,
-        required: false,
         default: false,
       },
     },
     next: {
       initial: {
         type: String,
-        required: false,
         default: "Далее",
       },
     },
+  },
+  structure: {
+    type: Array,
+    default: ["test", "Тестирование"],
   },
   iterables: [
     {
@@ -340,26 +356,26 @@ const longreadSchema = new mongoose.Schema({
   },
   nameRus: {
     type: String,
-    required: true,
+    required: [true, "Укажите название лонгрида."],
   },
   requiredState: {
     type: String,
-    required: true,
+    default: "completed",
   },
   evaluated: {
     type: Boolean,
-    required: true,
+    default: true,
   },
   structure: {
-    type: String,
-    required: true,
+    type: Array,
+    default: ["longread", "Лонгрид"],
   },
 });
 
 const courseSchema = new mongoose.Schema({
   iri: {
     type: String,
-    required: true,
+    required: [true, "Укажите идентификатор курса."],
   },
   type: {
     type: String,
@@ -367,7 +383,7 @@ const courseSchema = new mongoose.Schema({
   },
   nameRus: {
     type: String,
-    required: true,
+    required: [true, "Укажите название курса."],
   },
   passingScore: {
     type: String,
