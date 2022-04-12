@@ -1,31 +1,6 @@
 const mongoose = require("mongoose");
 
-const longreadSchema = new mongoose.Schema({
-  iri: {
-    type: String,
-    default: "/longread",
-  },
-  type: {
-    type: String,
-    default: "longread",
-  },
-  nameRus: {
-    type: String,
-    required: true,
-  },
-  requiredState: {
-    type: String,
-    required: true,
-  },
-  evaluated: {
-    type: Boolean,
-    required: true,
-  },
-  structure: {
-    type: String,
-    required: true,
-  },
-});
+const questionSchema = new mongoose.Schema({});
 
 const testSchema = new mongoose.Schema({
   iri: {
@@ -255,6 +230,39 @@ const testSchema = new mongoose.Schema({
       },
     },
   },
+  iterables: [
+    {
+      type: questionSchema,
+      required: true,
+    },
+  ],
+});
+
+const longreadSchema = new mongoose.Schema({
+  iri: {
+    type: String,
+    default: "/longread",
+  },
+  type: {
+    type: String,
+    default: "longread",
+  },
+  nameRus: {
+    type: String,
+    required: true,
+  },
+  requiredState: {
+    type: String,
+    required: true,
+  },
+  evaluated: {
+    type: Boolean,
+    required: true,
+  },
+  structure: {
+    type: String,
+    required: true,
+  },
 });
 
 const courseSchema = new mongoose.Schema({
@@ -282,6 +290,19 @@ const courseSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  includedIn: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Track",
+      required: false,
+    },
+  ],
+  interactions: [
+    {
+      type: longreadSchema || testSchema,
+      required: false,
+    },
+  ],
 });
 
 module.exports = mongoose.model("Course", courseSchema);
