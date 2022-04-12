@@ -75,6 +75,10 @@ const trackSchema = new mongoose.Schema(
       type: String,
       required: [true, "Пожалуйста, укажите IRI трека."],
     },
+    type: {
+      type: String,
+      dafault: "track",
+    },
     nameRus: {
       type: String,
       required: [true, "Пожалуйста, укажите название трека."],
@@ -170,6 +174,13 @@ const trackSchema = new mongoose.Schema(
     globalPools: [
       {
         type: globalPoolSchema,
+        required: false,
+      },
+    ],
+    consistsOf: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Course",
         required: false,
       },
     ],
