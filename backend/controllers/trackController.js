@@ -54,6 +54,7 @@ const setTrack = asyncHandler(async (req, res) => {
     },
     globalMetrics: req.body.globalMetrics || [],
     globalPools: req.body.globalPools || [],
+    consistsOf: req.body.consistsOF || [],
   });
 
   res.status(200).json(track);

@@ -23,23 +23,14 @@ const setCourse = asyncHandler(async (req, res) => {
   }
 
   const course = await Course.create({
-    appliedFor: req.body.appliedFor,
-    name: req.body.name,
-    occupation: req.body.occupation,
-    organization: req.body.organization,
-    email: req.body.email,
-    phone: req.body.phone,
-    subordinates: {
-      direct: req.body?.subordinates?.direct || "-1",
-      functional: req.body?.subordinates?.functional || "-1",
-    },
-    experience: req.body.experience,
-    timeAvailable: req.body.timeAvailable,
-    strengths: req.body.strengths,
-    devZones: req.body.devZones,
-    complications: req.body.complications,
-    task: req.body.task,
-    goal: req.body.goal,
+    iri: req.body.iri,
+    type: req.body.type,
+    nameRus: req.body.nameRus,
+    passingScore: req.body.passingScore,
+    resume: req.body.resume,
+    scoringFunction: req.body.scoringFunction || "",
+    includedIn: req.body.includedIn || [],
+    interactions: req.body.interactions || [],
   });
 
   res.status(200).json(course);
@@ -59,7 +50,9 @@ const updateCourse = asyncHandler(async (req, res) => {
   const updatedCourse = await Course.findByIdAndUpdate(
     req.params.id,
     req.body,
-    { new: true }
+    {
+      new: true,
+    }
   );
 
   res.status(200).json(updatedCourse);
