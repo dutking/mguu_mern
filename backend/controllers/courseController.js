@@ -6,11 +6,16 @@ const Course = require("../models/courseModel");
 // @route GET /api/courses
 // @access Private
 const getCourses = asyncHandler(async (req, res) => {
-  //let feedbacks = await Promise.allSettled(tracks.map((t) => Feedback.find({track: t})))
-  //const feedbacks = await Feedback.find({trackId: {$in: tracks}})
   const courses = await Course.find();
   res.status(200).json(courses);
-  //res.status(200).json(feedbacks.map(f => f.value))
+});
+
+// @desc Get course
+// @route GET /api/courses/:id
+// @access Private
+const getCourse = asyncHandler(async (req, res) => {
+  const course = await Course.findById(req.params.id);
+  res.status(200).json(course);
 });
 
 // @desc Set course
@@ -76,6 +81,7 @@ const deleteCourse = asyncHandler(async (req, res) => {
 
 module.exports = {
   getCourses,
+  getCourse,
   setCourse,
   updateCourse,
   deleteCourse,

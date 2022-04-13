@@ -6,11 +6,16 @@ const Track = require("../models/trackModel");
 // @route GET /api/tracks
 // @access Private
 const getTracks = asyncHandler(async (req, res) => {
-  //let feedbacks = await Promise.allSettled(tracks.map((t) => Feedback.find({track: t})))
-  //const feedbacks = await Feedback.find({trackId: {$in: tracks}})
   const tracks = await Track.find();
   res.status(200).json(tracks);
-  //res.status(200).json(feedbacks.map(f => f.value))
+});
+
+// @desc Get track
+// @route GET /api/tracks/:id
+// @access Private
+const getTrack = asyncHandler(async (req, res) => {
+  const track = await Track.findById(req.params.id);
+  res.status(200).json(track);
 });
 
 // @desc Set track
@@ -36,20 +41,20 @@ const setTrack = asyncHandler(async (req, res) => {
     },
     buttons: {
       submit: {
-        initial: req.body.submit.initial || "Ответить",
-        completed: req.body.submit.completed || "Ответ принят",
-        icon: req.body.submit.icon || false,
+        initial: req.body.buttons.submit.initial || "Ответить",
+        completed: req.body.buttons.submit.completed || "Ответ принят",
+        icon: req.body.buttons.submit.icon || false,
       },
       tryAgain: {
-        initial: req.body.tryAgain.initial || "Попробовать еще раз",
-        icon: req.body.tryAgain.icon || false,
+        initial: req.body.buttons.tryAgain.initial || "Попробовать еще раз",
+        icon: req.body.buttons.tryAgain.icon || false,
       },
       continue: {
-        initial: req.body.continue.initial || "Следующий вопрос",
-        last: req.body.continue.last || "Завершить попытку",
+        initial: req.body.buttons.continue.initial || "Следующий вопрос",
+        last: req.body.buttons.continue.last || "Завершить попытку",
       },
       next: {
-        initial: req.body.continue.initial || "ДАЛЕЕ",
+        initial: req.body.buttons.continue.initial || "ДАЛЕЕ",
       },
     },
     globalMetrics: req.body.globalMetrics || [],
@@ -96,6 +101,7 @@ const deleteTrack = asyncHandler(async (req, res) => {
 
 module.exports = {
   getTracks,
+  getTrack,
   setTrack,
   updateTrack,
   deleteTrack,

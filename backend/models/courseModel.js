@@ -22,7 +22,7 @@ const answerSchema = new mongoose.Schema({
   },
   text: {
     type: String,
-    required: [true, "Укажите текст варианта ответа."],
+    default: "",
   },
   feedback: {
     type: String,

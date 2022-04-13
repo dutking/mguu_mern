@@ -76,7 +76,7 @@ const trackSchema = new mongoose.Schema(
     },
     type: {
       type: String,
-      dafault: "track",
+      default: "track",
     },
     nameRus: {
       type: String,
