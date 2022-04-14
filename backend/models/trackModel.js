@@ -82,71 +82,115 @@ const trackSchema = new mongoose.Schema(
       type: String,
       required: [true, "Пожалуйста, укажите название трека."],
     },
-    instruction: {
-      mc: {
-        type: String,
-        default: "Выберите верный ответ.",
-      },
-      mr: {
-        type: String,
-        default: "Выберите от <minReponses> до <maxResponses> ответов.",
-      },
-      fillin: {
-        type: String,
-        default: "Введите ваш ответ.",
-      },
-      longfillin: {
-        type: String,
-        default: "Введите ваш ответ.",
-      },
-      range: {
-        type: String,
-        default: "Выставите требуемое значение.",
-      },
-    },
-    buttons: {
-      submit: {
-        initial: {
-          type: String,
-          default: "Ответить",
+    defaultSettings: {
+      test: {
+        instructions: {
+          mc: {
+            type: String,
+            default: "Выберите верный ответ.",
+          },
+          mr: {
+            type: String,
+            default: "Выберите от <minReponses> до <maxResponses> ответов.",
+          },
+          fillin: {
+            type: String,
+            default: "Введите ваш ответ.",
+          },
+          longfillin: {
+            type: String,
+            default: "Введите ваш ответ.",
+          },
+          range: {
+            type: String,
+            default: "Выставите требуемое значение.",
+          },
         },
-        completed: {
+        displayMode: {
           type: String,
-          default: "Ответ принят",
+          default: "one_by_one",
         },
-        icon: {
+        submitMode: {
+          type: String,
+          default: "each",
+        },
+        counter: {
+          type: String,
+          default: "Вопрос <orderNum> из <amountOfQuestions>",
+        },
+        shuffleQuestions: {
           type: Boolean,
-          default: false,
+          default: true,
+        },
+        attemptsPerTest: {
+          type: Number,
+          default: 0,
+        },
+        attemptsPerQuestion: {
+          type: Number,
+          default: 0,
+        },
+        tryAgain: {
+          type: String,
+          default: "untill_all_attempts",
+        },
+        passingScore: {
+          type: String,
+          default: "80%",
+        },
+        scoring: {
+          type: String,
+          default: "questions",
+        },
+        buttons: {
+          submit: {
+            initial: {
+              type: String,
+              default: "Ответить",
+            },
+            completed: {
+              type: String,
+              default: "Ответ принят",
+            },
+            icon: {
+              type: Boolean,
+              default: false,
+            },
+          },
+          tryAgain: {
+            initial: {
+              type: String,
+              default: "Попробовать еще раз",
+            },
+            icon: {
+              type: Boolean,
+              default: false,
+            },
+          },
+          continue: {
+            initial: {
+              type: String,
+              default: "Следующий вопрос",
+            },
+            last: {
+              type: String,
+              default: "Завершить попытку",
+            },
+            icon: {
+              type: Boolean,
+              default: false,
+            },
+          },
         },
       },
-      tryAgain: {
-        initial: {
-          type: String,
-          default: "Попробовать еще раз",
-        },
-        icon: {
-          type: Boolean,
-          default: false,
-        },
-      },
-      continue: {
-        initial: {
-          type: String,
-          default: "Следующий вопрос",
-        },
-        last: {
-          type: String,
-          default: "Завершить попытку",
-        },
-        icon: {
-          type: Boolean,
-          default: false,
-        },
-      },
-      next: {
-        initial: {
-          type: String,
-          default: "Далее",
+      longread: {
+        buttons: {
+          next: {
+            initial: {
+              type: String,
+              default: "Далее",
+            },
+          },
         },
       },
     },

@@ -132,7 +132,7 @@ const testSchema = new mongoose.Schema({
   },
   counter: {
     type: String,
-    default: "<orderNum>",
+    default: "Вопрос <orderNum> из <amountOfQuestions>",
   },
   displayMode: {
     type: String,
@@ -384,6 +384,10 @@ const courseSchema = new mongoose.Schema({
   nameRus: {
     type: String,
     required: [true, "Укажите название курса."],
+  },
+  pageId: {
+    type: String,
+    required: [true, "Укажите идентификатор соответствующего пакета."],
   },
   passingScore: {
     type: String,

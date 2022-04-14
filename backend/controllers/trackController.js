@@ -30,31 +30,39 @@ const setTrack = asyncHandler(async (req, res) => {
   const track = await Track.create({
     iri: req.body.iri,
     nameRus: req.body.nameRus,
-    instruction: {
-      mc: req.body.instruction.mc || "Выберите верный ответ.",
-      mr:
-        req.body.instruction.mr ||
-        "Выберите от <minReponses> до <maxResponses> ответов.",
-      longfillin: req.body.instruction.longfillin || "Введите ваш ответ.",
-      fillin: req.body.instruction.fillin || "Введите ваш ответ.",
-      range: req.body.instruction.range || "Выставите требуемое значение.",
-    },
-    buttons: {
-      submit: {
-        initial: req.body.buttons.submit.initial || "Ответить",
-        completed: req.body.buttons.submit.completed || "Ответ принят",
-        icon: req.body.buttons.submit.icon || false,
+    defaultSettings: {
+      test: {
+        instructions: {
+          mc: req.body.instruction.mc || "Выберите верный ответ.",
+          mr:
+            req.body.instruction.mr ||
+            "Выберите от <minReponses> до <maxResponses> ответов.",
+          longfillin: req.body.instruction.longfillin || "Введите ваш ответ.",
+          fillin: req.body.instruction.fillin || "Введите ваш ответ.",
+          range: req.body.instruction.range || "Выставите требуемое значение.",
+        },
+        buttons: {
+          submit: {
+            initial: req.body.buttons.submit.initial || "Ответить",
+            completed: req.body.buttons.submit.completed || "Ответ принят",
+            icon: req.body.buttons.submit.icon || false,
+          },
+          tryAgain: {
+            initial: req.body.buttons.tryAgain.initial || "Попробовать еще раз",
+            icon: req.body.buttons.tryAgain.icon || false,
+          },
+          continue: {
+            initial: req.body.buttons.continue.initial || "Следующий вопрос",
+            last: req.body.buttons.continue.last || "Завершить попытку",
+          },
+        },
       },
-      tryAgain: {
-        initial: req.body.buttons.tryAgain.initial || "Попробовать еще раз",
-        icon: req.body.buttons.tryAgain.icon || false,
-      },
-      continue: {
-        initial: req.body.buttons.continue.initial || "Следующий вопрос",
-        last: req.body.buttons.continue.last || "Завершить попытку",
-      },
-      next: {
-        initial: req.body.buttons.continue.initial || "ДАЛЕЕ",
+      longread: {
+        buttons: {
+          next: {
+            initial: req.body.buttons.continue.initial || "ДАЛЕЕ",
+          },
+        },
       },
     },
     globalMetrics: req.body.globalMetrics || [],
