@@ -213,6 +213,10 @@ const trackSchema = new mongoose.Schema(
         required: false,
       },
     ],
+    courses: {
+      type: Array,
+      default: [],
+    },
   },
   {
     timestamps: true,

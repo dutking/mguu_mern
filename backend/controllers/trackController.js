@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 
 const Track = require("../models/trackModel");
+const Course = require("../models/courseModel");
 
 // @desc Get tracks
 // @route GET /api/tracks
@@ -15,6 +16,18 @@ const getTracks = asyncHandler(async (req, res) => {
 // @access Private
 const getTrack = asyncHandler(async (req, res) => {
   const track = await Track.findById(req.params.id);
+  res.status(200).json(track);
+});
+
+// @desc Get complete track
+// @route GET /api/tracks/complete/:id
+// @access Private
+const getCompleteTrack = asyncHandler(async (req, res) => {
+  const track = await Track.findById(req.params.id);
+  track.courses = await Promise.all(
+    track.consistsOf.map((courseId) => Course.findById(courseId))
+  );
+
   res.status(200).json(track);
 });
 
@@ -67,7 +80,7 @@ const setTrack = asyncHandler(async (req, res) => {
     },
     globalMetrics: req.body.globalMetrics || [],
     globalPools: req.body.globalPools || [],
-    consistsOf: req.body.consistsOF || [],
+    consistsOf: req.body.consistsOf || [],
   });
 
   res.status(200).json(track);
@@ -110,6 +123,7 @@ const deleteTrack = asyncHandler(async (req, res) => {
 module.exports = {
   getTracks,
   getTrack,
+  getCompleteTrack,
   setTrack,
   updateTrack,
   deleteTrack,
