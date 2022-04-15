@@ -95,6 +95,10 @@ const questionSchema = new mongoose.Schema({
       default: "",
     },
   },
+  showPoolsInFeedback: {
+    type: Boolean,
+    default: false,
+  },
   help: [
     {
       type: String,
