@@ -412,12 +412,7 @@ const courseSchema = new mongoose.Schema({
       required: false,
     },
   ],
-  interactions: [
-    {
-      type: longreadSchema || testSchema,
-      required: false,
-    },
-  ],
+  interactions: [],
 });
 
 module.exports = mongoose.model("Course", courseSchema);
