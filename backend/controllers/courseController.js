@@ -28,7 +28,7 @@ const setCourse = asyncHandler(async (req, res) => {
   }
 
   const course = await Course.create({
-    iri: req.body.iri,
+    id: req.body.id,
     type: req.body.type,
     nameRus: req.body.nameRus,
     pageId: req.body.pageId,

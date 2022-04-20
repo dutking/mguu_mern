@@ -12,7 +12,7 @@ const poolSchema = new mongoose.Schema({
 });
 
 const answerSchema = new mongoose.Schema({
-  iri: {
+  id: {
     type: String,
     required: [true, "Укажите идентификатор варианта ответа."],
   },
@@ -45,7 +45,7 @@ const answerSchema = new mongoose.Schema({
 });
 
 const questionSchema = new mongoose.Schema({
-  iri: {
+  id: {
     type: String,
     required: [true, "Укажите идентификатор вопроса."],
   },
@@ -114,7 +114,7 @@ const questionSchema = new mongoose.Schema({
 });
 
 const testSchema = new mongoose.Schema({
-  iri: {
+  id: {
     type: String,
     required: [true, "Укажите идентификатор теста."],
   },
@@ -286,6 +286,16 @@ const testSchema = new mongoose.Schema({
       },
     },
   },
+  statements: {
+    send: {
+      requiredState: {
+        type: String,
+      },
+      message: {
+        type: String,
+      },
+    },
+  },
   buttons: {
     submit: {
       initial: {
@@ -350,7 +360,7 @@ const testSchema = new mongoose.Schema({
 });
 
 const longreadSchema = new mongoose.Schema({
-  iri: {
+  id: {
     type: String,
     default: "/longread",
   },
@@ -377,7 +387,7 @@ const longreadSchema = new mongoose.Schema({
 });
 
 const courseSchema = new mongoose.Schema({
-  iri: {
+  id: {
     type: String,
     required: [true, "Укажите идентификатор курса."],
   },
