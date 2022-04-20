@@ -240,14 +240,18 @@ const testSchema = new mongoose.Schema({
       type: String,
       default: "",
     },
-    byScore: {
-      type: String,
-      default: "",
-    },
-    byAttempt: {
-      type: String,
-      default: "",
-    },
+    byScore: [
+      {
+        type: Array,
+        required: false,
+      },
+    ],
+    byAttempt: [
+      {
+        type: Array,
+        required: false,
+      },
+    ],
     showUserPoolsResult: {
       type: Boolean,
       default: false,
@@ -264,10 +268,12 @@ const testSchema = new mongoose.Schema({
       type: String,
       default: "none",
     },
-    hideElements: {
-      type: String,
-      default: "",
-    },
+    hideElements: [
+      {
+        type: String,
+        required: false,
+      },
+    ],
     answersFeedbackMode: {
       type: String,
       default: "question",
@@ -290,27 +296,35 @@ const testSchema = new mongoose.Schema({
       type: String,
       default: "",
     },
-    byScore: {
-      type: String,
-      default: "",
-    },
-    byAttempt: {
-      type: String,
-      default: "",
-    },
+    byScore: [
+      {
+        type: Array,
+        required: false,
+      },
+    ],
+    byAttempt: [
+      {
+        type: Array,
+        required: false,
+      },
+    ],
   },
   questionsSettings: {
     feedback: {
-      hideElements: {
-        type: String,
-        default: "",
-      },
+      hideElements: [
+        {
+          type: String,
+          required: false,
+        },
+      ],
     },
     resume: {
-      hideElements: {
-        type: String,
-        default: "",
-      },
+      hideElements: [
+        {
+          type: String,
+          required: false,
+        },
+      ],
     },
   },
   statements: {
