@@ -92,10 +92,7 @@ const questionSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
-  validation: {
-    type: String,
-    required: false,
-  },
+  validation: {},
   shuffle: {
     type: Boolean,
     default: true,
@@ -228,6 +225,10 @@ const testSchema = new mongoose.Schema({
     default: 1,
   },
   feedback: {
+    chartFunction: {
+      type: String,
+      default: "",
+    },
     common: {
       type: String,
       default: "",
@@ -272,6 +273,7 @@ const testSchema = new mongoose.Schema({
       {
         type: String,
         required: false,
+        default: [],
       },
     ],
     answersFeedbackMode: {
@@ -304,8 +306,14 @@ const testSchema = new mongoose.Schema({
     ],
     byAttempt: [
       {
-        type: Array,
-        required: false,
+        attempt: {
+          type: String,
+          required: false,
+        },
+        text: {
+          type: String,
+          required: false,
+        },
       },
     ],
   },
