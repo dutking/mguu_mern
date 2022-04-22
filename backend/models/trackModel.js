@@ -23,7 +23,7 @@ const globalMetricSchema = new mongoose.Schema({
   },
   metricExtension: {
     type: String,
-    required: [true, "Укажите metricExtension."],
+    required: false,
   },
   statementFunction: {
     type: String,
