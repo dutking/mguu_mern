@@ -241,18 +241,8 @@ const testSchema = new mongoose.Schema({
       type: String,
       default: "",
     },
-    byScore: [
-      {
-        type: Array,
-        required: false,
-      },
-    ],
-    byAttempt: [
-      {
-        type: Array,
-        required: false,
-      },
-    ],
+    byScore: [{}],
+    byAttempt: [{}],
     showUserPoolsResult: {
       type: Boolean,
       default: false,
