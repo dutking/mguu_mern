@@ -408,54 +408,59 @@ const testSchema = new mongoose.Schema({
   ],
 });
 
-const courseSchema = new mongoose.Schema({
-  id: {
-    type: String,
-    required: [true, "Укажите идентификатор курса."],
-  },
-  type: {
-    type: String,
-    default: "course",
-  },
-  nameRus: {
-    type: String,
-    required: [true, "Укажите название курса."],
-  },
-  pageId: {
-    type: String,
-    required: [true, "Укажите идентификатор соответствующего пакета."],
-  },
-  passingScore: {
-    type: String,
-    default: "max",
-  },
-  resume: {
-    type: Boolean,
-    default: true,
-  },
-  scoringFunction: {
-    type: String,
-    default: "",
-  },
-  includedIn: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Track",
-      required: false,
+const courseSchema = new mongoose.Schema(
+  {
+    id: {
+      type: String,
+      required: [true, "Укажите идентификатор курса."],
     },
-  ],
-  interactions: {
-    tests: [
+    type: {
+      type: String,
+      default: "course",
+    },
+    nameRus: {
+      type: String,
+      required: [true, "Укажите название курса."],
+    },
+    pageId: {
+      type: String,
+      required: [true, "Укажите идентификатор соответствующего пакета."],
+    },
+    passingScore: {
+      type: String,
+      default: "max",
+    },
+    resume: {
+      type: Boolean,
+      default: true,
+    },
+    scoringFunction: {
+      type: String,
+      default: "",
+    },
+    includedIn: [
       {
-        type: testSchema,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Track",
         required: false,
       },
     ],
-    longread: {
-      type: longreadSchema,
-      required: true,
+    interactions: {
+      tests: [
+        {
+          type: testSchema,
+          required: false,
+        },
+      ],
+      longread: {
+        type: longreadSchema,
+        required: true,
+      },
     },
   },
-});
+  {
+    timestamps: true,
+  }
+);
 
 module.exports = mongoose.model("Course", courseSchema);
