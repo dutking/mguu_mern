@@ -25,6 +25,7 @@ const longreadSchema = new mongoose.Schema({
     type: Array,
     default: ["longread", "Лонгрид"],
   },
+  buttons: {},
 });
 
 const poolSchema = new mongoose.Schema({
