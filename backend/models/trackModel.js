@@ -31,7 +31,7 @@ const globalMetricSchema = new mongoose.Schema({
   },
   requiredState: {
     type: String,
-    required: [true, "Укажите условие отправки метрики."],
+    default: "completed",
   },
 });
 
