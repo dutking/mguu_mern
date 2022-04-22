@@ -298,24 +298,8 @@ const testSchema = new mongoose.Schema({
       type: String,
       default: "",
     },
-    byScore: [
-      {
-        type: Array,
-        required: false,
-      },
-    ],
-    byAttempt: [
-      {
-        attempt: {
-          type: String,
-          required: false,
-        },
-        text: {
-          type: String,
-          required: false,
-        },
-      },
-    ],
+    byScore: [{}],
+    byAttempt: [{}],
   },
   questionsSettings: {
     feedback: {
