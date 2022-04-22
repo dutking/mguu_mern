@@ -25,7 +25,14 @@ const longreadSchema = new mongoose.Schema({
     type: Array,
     default: ["longread", "Лонгрид"],
   },
-  buttons: {},
+  buttons: {
+    next: {
+      initial: {
+        type: String,
+        default: "Далее",
+      },
+    },
+  },
 });
 
 const poolSchema = new mongoose.Schema({
@@ -362,12 +369,6 @@ const testSchema = new mongoose.Schema({
       icon: {
         type: Boolean,
         default: false,
-      },
-    },
-    next: {
-      initial: {
-        type: String,
-        default: "Далее",
       },
     },
   },
