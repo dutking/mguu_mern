@@ -196,7 +196,7 @@ const testSchema = new mongoose.Schema({
   },
   amountOfQuestions: {
     type: String,
-    default: "num:0",
+    default: "0",
   },
   passingScore: {
     type: String,
