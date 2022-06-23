@@ -166,6 +166,10 @@ const testSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  commonQuestion: {
+    type: String,
+    default: "",
+  },
   counter: {
     type: String,
     default: "Вопрос <orderNum> из <amountOfQuestions>",
