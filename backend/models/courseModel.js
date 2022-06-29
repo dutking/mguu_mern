@@ -154,6 +154,10 @@ const testSchema = new mongoose.Schema({
     type: String,
     default: "test",
   },
+  classes: {
+    type: String,
+    default: "",
+  },
   nameRus: {
     type: String,
     required: [true, "Укажите название теста."],
