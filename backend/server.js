@@ -19,8 +19,10 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ extended: true, limit: "10mb" }));
+app.use(
+  express.urlencoded({ extended: true, limit: "10mb", parameterLimit: 1000000 })
+);
 
 app.use("/api/applications", require("./routes/applicationRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
