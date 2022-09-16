@@ -36,7 +36,7 @@ const globalMetricSchema = new mongoose.Schema({
 });
 
 const globalPoolSchema = new mongoose.Schema({
-  poolId: {
+  id: {
     type: String,
     required: [true, "Укажите идентификатор пула."],
   },

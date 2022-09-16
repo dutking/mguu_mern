@@ -36,7 +36,7 @@ const longreadSchema = new mongoose.Schema({
 });
 
 const poolSchema = new mongoose.Schema({
-  poolId: {
+  id: {
     type: String,
     required: true,
   },
