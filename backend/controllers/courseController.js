@@ -37,6 +37,7 @@ const setCourse = asyncHandler(async (req, res) => {
     scoringFunction: req.body.scoringFunction || "",
     includedIn: req.body.includedIn || [],
     interactions: {
+      chapters: req.body.interactions.filter((i) => i.type === "chapter"),
       tests: req.body.interactions.filter((i) => i.type === "test"),
       longread: req.body.interactions.filter((i) => i.type === "longread")[0],
     },

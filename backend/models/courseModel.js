@@ -35,6 +35,37 @@ const longreadSchema = new mongoose.Schema({
   },
 });
 
+const chapterSchema = new mongoose.Schema({
+  id: {
+    type: String,
+    default: "/chapter",
+  },
+  type: {
+    type: String,
+    default: "chapter",
+  },
+  nameRus: {
+    type: String,
+    required: [true, "Укажите название главы."],
+  },
+  requiredState: {
+    type: String,
+    default: "completed",
+  },
+  evaluated: {
+    type: Boolean,
+    default: true,
+  },
+  structure: {
+    type: Array,
+    default: ["chater", "Глава"],
+  },
+  weight: {
+    type: Number,
+    default: 1,
+  },
+});
+
 const poolSchema = new mongoose.Schema({
   id: {
     type: String,
@@ -430,6 +461,12 @@ const courseSchema = new mongoose.Schema(
       },
     ],
     interactions: {
+      chapters: [
+        {
+          type: chapterSchema,
+          required: false,
+        },
+      ],
       tests: [
         {
           type: testSchema,
