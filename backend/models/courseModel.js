@@ -58,7 +58,7 @@ const chapterSchema = new mongoose.Schema({
   },
   structure: {
     type: Array,
-    default: ["chater", "Глава"],
+    default: ["chapter", "Глава"],
   },
   weight: {
     type: Number,
