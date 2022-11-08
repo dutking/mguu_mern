@@ -33,6 +33,14 @@ const longreadSchema = new mongoose.Schema({
       },
     },
   },
+  weight: {
+    type: Number,
+    default: 1,
+  },
+  order: {
+    type: Number,
+    required: [true, "Укажите порядковый номер объекта."],
+  },
 });
 
 const chapterSchema = new mongoose.Schema({
@@ -63,6 +71,10 @@ const chapterSchema = new mongoose.Schema({
   weight: {
     type: Number,
     default: 1,
+  },
+  order: {
+    type: Number,
+    required: [true, "Укажите порядковый номер объекта."],
   },
 });
 
@@ -421,6 +433,10 @@ const testSchema = new mongoose.Schema({
       required: true,
     },
   ],
+  order: {
+    type: Number,
+    required: [true, "Укажите порядковый номер объекта."],
+  },
 });
 
 const courseSchema = new mongoose.Schema(
