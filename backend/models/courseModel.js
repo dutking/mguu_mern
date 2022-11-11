@@ -461,6 +461,10 @@ const courseSchema = new mongoose.Schema(
       type: String,
       default: "max",
     },
+    appendUserFeedback: {
+      type: Boolean,
+      default: false,
+    },
     resume: {
       type: Boolean,
       default: true,
