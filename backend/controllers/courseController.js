@@ -34,6 +34,7 @@ const setCourse = asyncHandler(async (req, res) => {
     pageId: req.body.pageId,
     passingScore: req.body.passingScore || "max",
     resume: req.body.resume || true,
+    appendUserFeedback: req.body.appendUserFeedback || false,
     scoringFunction: req.body.scoringFunction || "",
     includedIn: req.body.includedIn || [],
     interactions: {
