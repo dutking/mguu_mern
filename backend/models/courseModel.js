@@ -351,6 +351,10 @@ const testSchema = new mongoose.Schema({
     byAttempt: [{}],
   },
   questionsSettings: {
+    metrics: {
+      type: String,
+      required: false
+    },
     feedback: {
       hideElements: [
         {
